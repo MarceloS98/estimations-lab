@@ -1,5 +1,6 @@
 <script>
 	import { Card, Button } from 'flowbite-svelte';
+	export let route = 'project-1';
 </script>
 
 <Card class="hover:scale-105 transition-transform min-w-full">
@@ -10,7 +11,7 @@
 		Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological
 		order.
 	</p>
-	<Button class="w-fit" href="/projects/project-1">
+	<Button class="w-fit" href={`/projects/${route}`}>
 		Read more <svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
