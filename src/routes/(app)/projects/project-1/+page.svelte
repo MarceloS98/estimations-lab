@@ -1,13 +1,27 @@
 <script>
-	import { Navbar, NavLi, NavUl } from 'flowbite-svelte';
+	import PageHeader from '$lib/components/app/PageHeader.svelte';
+	import EpicsBar from '$lib/components/app/EpicsBar.svelte';
+	import CardsGrid from '$src/lib/components/app/CardsGrid.svelte';
 </script>
 
-<h1 class="container mx-auto text-3xl font-bold underline">Project 1</h1>
-<Navbar>
-	<NavUl>
-		<NavLi href="/projects/project-1/create-epic">Create Epic</NavLi>
-		<NavLi href="/projects/project-1/edit-epic">Edit Epic</NavLi>
-		<NavLi href="/projects/project-1/create-request">Create Request</NavLi>
-		<NavLi href="/projects/project-1/edit-request">Edit Request</NavLi>
-	</NavUl>
-</Navbar>
+<main class="max-w-4xl mx-auto mb-8">
+	<!-- Project description -->
+	<section class="grid gap-y-5 mb-10">
+		<PageHeader isEditable={true} title="Lab Estimations" />
+		<!-- Description -->
+		<p>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+			been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+			galley of type and scrambled it to make a type specimen book.
+		</p>
+
+		<!-- Epics -->
+		<EpicsBar />
+	</section>
+
+	<!-- Requests -->
+	<section>
+		<PageHeader title="Requests" />
+		<CardsGrid route="project-1/request-1" />
+	</section>
+</main>
