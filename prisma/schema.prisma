@@ -10,3 +10,100 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Projects {
+  projects_id Int @id @default(autoincrement())
+  tittle String @db.VarChar(80) 
+  description String @db.VarChar(250)
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(3)
+  deleted_at DateTime?
+  deleted_status Boolean @default(false)
+
+  epics Epics[] @relation("project_to_epics")
+}
+
+model Epics {
+  epics_id Int @id @default(autoincrement())
+  name String @db.VarChar(80)
+  color String 	@db.Char(7)
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(3)
+  deleted_at DateTime?
+  deleted_status Boolean @default(false)
+
+  project Projects @relation("project_to_epics", fields: [projects_id], references: [projects_id])
+  projects_id Int
+
+  requests Requests[] @relation("epic_to_requests")
+}
+
+model Requests {
+  requests_id Int @id @default(autoincrement())
+  name String @db.VarChar(80)
+  description String @db.VarChar(250)
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(3)
+  deleted_at DateTime?
+  deleted_status Boolean @default(false)
+
+  epic Epics @relation("epic_to_requests", fields: [epics_id], references: [epics_id])
+  epics_id Int
+
+  issues Issues[] @relation("requests_to_issues")
+  comments Comments[] @relation("requests_to_comments")
+ 
+
+}
+
+model Issues {
+  issues_id Int @id @default(autoincrement())
+  name String @db.VarChar(80)
+  description String @db.VarChar(250)
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(3)
+  deleted_at DateTime?
+  deleted_status Boolean @default(false)
+
+  request Requests @relation("requests_to_issues", fields: [requests_id], references: [requests_id])
+  requests_id Int
+
+  comments Comments[] @relation("issues_to_comments")
+
+}
+
+
+model Comments {
+  comments_id Int @id @default(autoincrement())
+  content String @db.VarChar(80)
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+
+  request Requests? @relation("requests_to_comments", fields: [requests_id], references: [requests_id])
+  requests_id Int?
+
+  issue Issues? @relation("issues_to_comments", fields: [issues_id], references: [issues_id])
+  issues_id Int?
+
+
+  comments_type Comments_type @relation("comments_type_to_comments", fields: [comments_type_id], references: [comments_type_id])
+  comments_type_id Int
+
+  user Users @relation("users_to_comments", fields: [users_id], references: [users_id])
+  users_id Int
+
+}
+
+model Comments_type {
+  comments_type_id Int @id @default(autoincrement())
+  type String @db.VarChar(50)
+
+  comments Comments[] @relation("comments_type_to_comments")
+}
+
+model Users {
+  users_id Int @id @default(autoincrement())
+  name String @db.VarChar(80)
+  email String @db.VarChar(80)
+  password String @db.VarChar(80)
+
+  comments Comments[] @relation("users_to_comments")
+}
