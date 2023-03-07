@@ -24,19 +24,19 @@
 		{toEdit ? `Edicion de ${type}` : `Creacion de ${type}`}
 	</h1>
 	<div>
-		<form>
+		<form action="?/createProject" method="POST">
 			<Label for={`nombre_${type}`} class="m-2 text-lg block">Cree aqui su {type}</Label>
 			<Input
-				id={`nombre_${type}`}
+				id={`tittle${type}`}
 				type="text"
 				placeholder="Escriba el nombre"
 				size="default"
-				name="title"
+				name="tittle"
 			/>
 			<Label for={`desc_${type}`} class="m-2 text-lg">Descripcion del {type}</Label>
 			<Textarea
 				class="h-52"
-				id={`desc_${type}`}
+				id={`description${type}`}
 				placeholder="Escriba la descripción"
 				name="description"
 			/>
