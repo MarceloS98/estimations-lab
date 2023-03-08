@@ -28,7 +28,7 @@
 		<!-- Issues -->
 		<section class="border-t pt-8">
 			<!-- Issues header -->
-			<PageHeader title="Issues" />
+			<PageHeader title="Issues" route="./request-1/issue-1/edit-issue/" />
 
 			<!-- Requests cards -->
 			<div class="grid md:grid-cols-2 gap-5">
