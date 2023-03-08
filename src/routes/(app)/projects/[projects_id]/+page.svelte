@@ -18,7 +18,7 @@
 		<p>{project.description}</p>
 
 		<!-- Epics -->
-		<EpicsBar />
+		<EpicsBar {project_id} />
 	</section>
 
 	<!-- Requests -->

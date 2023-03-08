@@ -1,5 +1,8 @@
-<script>
+<script lang="ts">
 	import { Button } from 'flowbite-svelte';
+
+	export let project_id: Number;
+
 	let colors = [
 		'bg-red-500',
 		'bg-yellow-500',
@@ -14,10 +17,10 @@
 <div class="flex justify-between">
 	<div class="flex gap-x-4">
 		{#each colors as color}
-			<Button href="/projects/project-1/edit-epic" class={color}>Epic</Button>
+			<Button href={`/projects/${project_id}/edit-epic`} class={color}>Epic</Button>
 		{/each}
 	</div>
-	<Button pill={true} outline={true} color="light" href="/projects/project-1/create-epic"
+	<Button pill={true} outline={true} color="light" href={`/projects/${project_id}/create-epic`}
 		>Nuevo Epic</Button
 	>
 </div>
