@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Button, Modal } from 'flowbite-svelte';
 	export let isEditable = false;
 	export let title = 'No title';
@@ -7,39 +7,49 @@
 
 	let route = '';
 	let popupModal = false;
-
-	switch (type) {
-		case 'project':
-			route = `/projects/${project_id}/edit-project`;
-			break;
-		case 'epic':
-			route = `/projects/${project_id}/edit-epic`;
-			break;
-		case 'request':
-			route = `/projects/${project_id}/request_id/edit-request`;
-			break;
-		case 'issue':
-			route = `/projects/${project_id}/request_id/issue_id/edit-issue`;
-			break;
-		default:
-			break;
+	// Switch to determine the route to edit the page
+	if (isEditable) {
+		switch (type) {
+			case 'project':
+				route = `/projects/${project_id}/edit-project`;
+				break;
+			case 'epic':
+				route = `/projects/${project_id}/edit-epic`;
+				break;
+			case 'request':
+				route = `/projects/${project_id}/request_id/edit-request`;
+				break;
+			case 'issue':
+				route = `/projects/${project_id}/request_id/issue_id/edit-issue`;
+				break;
+			default:
+				break;
+		}
+	} else {
+		// Switch to determine the route to create the page
+		switch (type) {
+			case 'project':
+				route = `/projects/create-project`;
+				break;
+			case 'epic':
+				route = `/projects/${project_id}/create-epic`;
+				break;
+			case 'request':
+				route = `/projects/${project_id}/create-request`;
+				break;
+			case 'issue':
+				route = `/projects/${project_id}/request_id/create-issue`;
+				break;
+			default:
+				break;
+		}
 	}
-
-	// import { afterNavigate } from '$app/navigation';
-	// import { base } from '$app/paths';
-
-	// let previousPage = base;
-	// console.log(previousPage);
-
-	// afterNavigate(({ from }) => {
-	// 	previousPage = from?.url.pathname || previousPage;
-	// });
 </script>
 
 {#if !isEditable}
 	<div class="flex items-center mb-4">
 		<h1 class="container mx-auto text-4xl font-bold">{title}</h1>
-		<Button href="/projects/create-project">Nuevo</Button>
+		<Button href={route}>Nuevo</Button>
 	</div>
 {:else}
 	<div class="flex items-center">

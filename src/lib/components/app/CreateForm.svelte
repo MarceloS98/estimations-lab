@@ -6,14 +6,14 @@
 	export let toEdit = false;
 	export let type: string;
 	export let project: any = {};
-	// console.log(project);
+	export let epics: any[] = [];
 
+	$: console.log(epics);
 	let previousPage: string = base;
 	let action: string;
 
 	afterNavigate(({ from }) => {
 		previousPage = from?.url.pathname || previousPage;
-		// console.log(previousPage);
 	});
 
 	function goBack(e: Event) {
@@ -66,6 +66,14 @@
 				name="description"
 				value={toEdit ? project?.description : ''}
 			/>
+			{#if type === 'request'}
+				<Label for={`desc_${type}`} class="m-2 text-lg">Selecciona un epic</Label>
+				<select name="" id="">
+					{#each epics as epic}
+						<option value={epic.epics_id}>{epic.name}</option>
+					{/each}
+				</select>
+			{/if}
 			<div class="flex gap-x-3 mt-3 justify-end">
 				<Button id="guardar" type="submit">Guardar</Button>
 				<Button id="cancelar" type="submit" on:click={goBack}>Cancelar</Button>
