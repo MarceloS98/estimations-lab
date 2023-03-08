@@ -8,7 +8,7 @@
 
 	const dispatcher = createEventDispatcher();
 
-	let route = '';
+	let route: string;
 	let popupModal = false;
 	// Switch to determine the route to edit the page
 	if (isEditable) {
@@ -32,7 +32,8 @@
 		// Switch to determine the route to create the page
 		switch (type) {
 			case 'project':
-				route = `/projects/create-project`;
+				console.log('entre a project');
+				route = '/projects/create-project';
 				break;
 			case 'epic':
 				route = `/projects/${project_id}/create-epic`;
@@ -44,6 +45,7 @@
 				route = `/projects/${project_id}/request_id/create-issue`;
 				break;
 			default:
+				console.log('No route');
 				break;
 		}
 	}

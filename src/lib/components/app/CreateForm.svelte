@@ -8,7 +8,6 @@
 	export let project: any = {};
 	export let epics: any[] = [];
 
-	$: console.log(epics);
 	let previousPage: string = base;
 	let action: string;
 

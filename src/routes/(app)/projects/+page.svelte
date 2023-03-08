@@ -8,6 +8,6 @@
 </script>
 
 <main class="container mx-auto max-w-4xl mb-10">
-	<PageHeader title="Projects" project_id={projects.project_id} />
+	<PageHeader title="Projects" project_id={projects.project_id} type="project" />
 	<CardsGrid {projects} />
 </main>
