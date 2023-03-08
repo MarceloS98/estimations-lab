@@ -11,7 +11,12 @@ export const load: PageServerLoad = async ({ params }) => {
 				projects_id: Number(params.projects_id)
 			}
 		}),
-		id: params.projects_id
+		id: params.projects_id,
+		epics: await prisma.epics.findMany({
+			where: {
+				projects_id: Number(params.projects_id)
+			}
+		})
 	};
 };
 

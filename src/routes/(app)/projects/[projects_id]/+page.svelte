@@ -17,6 +17,7 @@
 		});
 		goto('/projects');
 	}
+	$: epics = { data }.data.epics;
 </script>
 
 <main class="max-w-4xl mx-auto mb-8">
@@ -35,7 +36,7 @@
 		<p>{project.description}</p>
 
 		<!-- Epics -->
-		<EpicsBar {project_id} />
+		<EpicsBar {project_id} {epics} />
 	</section>
 
 	<!-- Requests -->
