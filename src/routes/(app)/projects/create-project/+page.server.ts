@@ -1,6 +1,5 @@
 import type { Actions } from './$types';
-import { prisma } from '$lib/server/prisma';
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	createProject: async ({ request }) => {
@@ -19,8 +18,6 @@ export const actions: Actions = {
 		} catch (err) {
 			return fail(500, { message: 'No se creo el articulo' });
 		}
-		return {
-			status: 201
-		};
+		throw redirect(303, '/projects');
 	}
 };

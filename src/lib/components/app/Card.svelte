@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
 	import { Card, Button } from 'flowbite-svelte';
-	export let route = 'project-1';
+
+	export let project: any;
+
+	$: ({ projects_id, tittle, description } = project);
 </script>
 
 <Card class="hover:scale-105 transition-transform min-w-full">
 	<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-		Noteworthy technology acquisitions 2021
+		{tittle}
 	</h5>
 	<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
-		Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological
-		order.
+		{description}
 	</p>
-	<Button class="w-fit" href={`/projects/${route}`}>
+	<Button class="w-fit" href={`/projects/${projects_id}`}>
 		Read more <svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
