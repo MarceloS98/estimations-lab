@@ -8,8 +8,9 @@
 <div class="flex justify-between">
 	<div class="flex gap-x-4">
 		{#each epics as epic}
-			<Button href={`/projects/${project_id}/edit-epic`} style={`background-color:${epic.color}`}
-				>{epic.name}</Button
+			<Button
+				href={`/projects/${project_id}/edit-epic/${epic.epics_id}`}
+				style={`background-color:${epic.color}`}>{epic.name}</Button
 			>
 		{/each}
 	</div>

@@ -10,12 +10,6 @@
 	// $: project = { data }.data.project;
 </script>
 
-<h1 class="container mx-auto text-3xl font-bold underline">Create Epic</h1>
-<Navbar>
-	<NavUl>
-		<NavLi href="/projects/{project_id}">Go Back</NavLi>
-	</NavUl>
-</Navbar>
 <div class="w-full h-full flex items-center justify-center">
 	<form action="?/createEpics" method="POST">
 		<div class="flex">
@@ -32,7 +26,7 @@
 			</Toggle>
 
 			<Toggle
-				color="gree"
+				color="green"
 				checked={color === 'green'}
 				on:click={() => {
 					color = 'green';
