@@ -4,11 +4,6 @@
 </script>
 
 <h1 class="container mx-auto text-3xl font-bold underline">Edit Epic</h1>
-<Navbar>
-	<NavUl>
-		<NavLi href="/projects/project-1">Go Back</NavLi>
-	</NavUl>
-</Navbar>
 
 <div class="w-full h-full flex items-center justify-center">
 	<div>
