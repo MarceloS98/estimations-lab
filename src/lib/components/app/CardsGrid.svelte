@@ -6,6 +6,8 @@
 
 <div class="grid md:grid-cols-2 gap-5">
 	{#each projects as project}
-		<Card {project} />
+		{#if project.deleted_status == false}
+			<Card {project} />
+		{/if}
 	{/each}
 </div>

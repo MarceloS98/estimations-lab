@@ -44,9 +44,26 @@ export const actions: Actions = {
 			return { status: 500, message: 'could not update the project' };
 		}
 		throw redirect(303, `/projects`);
-	}
+	},
 	// deleteProject: async ({ params }) => {
 	// 	try {
 	// 		await prisma.projects.update({
 	// 			where: {
+	deleteProject: async ({ params }) => {
+		console.log('dentro del actions');
+		try {
+			await prisma.projects.update({
+				where: {
+					projects_id: Number(params.projects_id)
+				},
+				data: {
+					deleted_status: true
+				}
+			});
+		} catch (error) {
+			console.error(error);
+			return { status: 500, message: 'could not delete the project' };
+		}
+		throw redirect(303, `/projects`);
+	}
 };

@@ -1,9 +1,12 @@
 <script>
 	import { Button, Modal } from 'flowbite-svelte';
+	import { createEventDispatcher } from 'svelte';
 	export let isEditable = false;
 	export let title = 'No title';
 	export let type = 'Type';
 	export let project_id;
+
+	const dispatcher = createEventDispatcher();
 
 	let route = '';
 	let popupModal = false;
@@ -11,6 +14,7 @@
 	switch (type) {
 		case 'project':
 			route = `/projects/${project_id}/edit-project`;
+			// console.log('aca?');
 			break;
 		case 'epic':
 			route = `/projects/${project_id}/edit-epic`;
@@ -66,8 +70,18 @@
 					<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
 						Are you sure you want to delete this project?
 					</h3>
-					<Button color="red" class="mr-2">Yes, delete</Button>
+					<!-- <form action="/projects/1/?/delete-project" method="POST"> -->
+					<Button
+						color="red"
+						class="mr-2"
+						type="button"
+						on:click={() => {
+							dispatcher('delete');
+							popupModal = false;
+						}}>Yes, delete</Button
+					>
 					<Button color="alternative">Cancel</Button>
+					<!-- </form> -->
 				</div>
 			</Modal>
 		</div>
