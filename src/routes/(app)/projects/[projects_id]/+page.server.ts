@@ -8,6 +8,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			where: {
 				projects_id: Number(params.projects_id)
 			}
-		})
+		}),
+		id: params.projects_id
 	};
 };

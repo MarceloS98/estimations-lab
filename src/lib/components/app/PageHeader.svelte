@@ -2,7 +2,28 @@
 	import { Button, Modal } from 'flowbite-svelte';
 	export let isEditable = false;
 	export let title = 'No title';
+	export let type = 'Type';
+	export let project_id;
+
+	let route = '';
 	let popupModal = false;
+
+	switch (type) {
+		case 'project':
+			route = `/projects/${project_id}/edit-project`;
+			break;
+		case 'epic':
+			route = `/projects/${project_id}/edit-epic`;
+			break;
+		case 'request':
+			route = `/projects/${project_id}/request_id/edit-request`;
+			break;
+		case 'issue':
+			route = `/projects/${project_id}/request_id/issue_id/edit-issue`;
+			break;
+		default:
+			break;
+	}
 
 	// import { afterNavigate } from '$app/navigation';
 	// import { base } from '$app/paths';
@@ -24,7 +45,7 @@
 	<div class="flex items-center">
 		<h1 class="container mx-auto text-4xl font-bold">{title}</h1>
 		<div class="flex gap-x-2">
-			<Button href="/projects/create-project">Editar</Button>
+			<Button href={route}>Editar</Button>
 			<Button on:click={() => (popupModal = true)}>Eliminar</Button>
 			<Modal bind:open={popupModal} size="xs" autoclose>
 				<div class="text-center">

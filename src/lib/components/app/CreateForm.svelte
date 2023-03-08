@@ -4,18 +4,40 @@
 	import { base } from '$app/paths';
 
 	export let toEdit = false;
-	export let type = 'Type';
+	export let type: string;
+	export let project: any = {};
+	// console.log(project);
 
 	let previousPage: string = base;
+	let action: string;
 
 	afterNavigate(({ from }) => {
 		previousPage = from?.url.pathname || previousPage;
-		console.log(previousPage);
+		// console.log(previousPage);
 	});
 
 	function goBack(e: Event) {
 		e.preventDefault();
 		goto(previousPage);
+	}
+
+	switch (type) {
+		case 'project':
+			action = toEdit ? 'updateProject' : 'createProject';
+			console.log(action);
+			break;
+		case 'epic':
+			action = toEdit ? 'updateEpics' : 'createEpics';
+			break;
+		case 'request':
+			action = toEdit ? 'updateRequest' : 'createRequest';
+			break;
+		case 'issue':
+			action = toEdit ? 'updateIssue' : 'createIssue';
+			break;
+		default:
+			console.log('Llego aca pero no deberia');
+			break;
 	}
 </script>
 
@@ -24,14 +46,17 @@
 		{toEdit ? `Edicion de ${type}` : `Creacion de ${type}`}
 	</h1>
 	<div>
-		<form action="?/createProject" method="POST">
-			<Label for={`nombre_${type}`} class="m-2 text-lg block">Cree aqui su {type}</Label>
+		<form action={`?/${action}`} method="POST">
+			<Label for={`nombre_${type}`} class="m-2 text-lg block"
+				>{toEdit ? 'Edite' : 'Cree'} aqui su {type}</Label
+			>
 			<Input
 				id={`tittle${type}`}
 				type="text"
 				placeholder="Escriba el nombre"
 				size="default"
 				name="tittle"
+				value={toEdit ? project?.tittle : ''}
 			/>
 			<Label for={`desc_${type}`} class="m-2 text-lg">Descripcion del {type}</Label>
 			<Textarea
@@ -39,6 +64,7 @@
 				id={`description${type}`}
 				placeholder="Escriba la descripción"
 				name="description"
+				value={toEdit ? project?.description : ''}
 			/>
 			<div class="flex gap-x-3 mt-3 justify-end">
 				<Button id="guardar" type="submit">Guardar</Button>
