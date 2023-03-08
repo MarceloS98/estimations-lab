@@ -23,3 +23,9 @@
 </Navbar>
 
 <slot />
+
+<style>
+	:global(body) {
+		background-color: rgb(226, 232, 240);
+	}
+</style>
