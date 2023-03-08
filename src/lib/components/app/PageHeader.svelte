@@ -3,16 +3,6 @@
 	export let isEditable = false;
 	export let title = 'No title';
 	let popupModal = false;
-
-	// import { afterNavigate } from '$app/navigation';
-	// import { base } from '$app/paths';
-
-	// let previousPage = base;
-	// console.log(previousPage);
-
-	// afterNavigate(({ from }) => {
-	// 	previousPage = from?.url.pathname || previousPage;
-	// });
 </script>
 
 {#if !isEditable}
@@ -24,7 +14,7 @@
 	<div class="flex items-center">
 		<h1 class="container mx-auto text-4xl font-bold">{title}</h1>
 		<div class="flex gap-x-2">
-			<Button href="/projects/create-project">Editar</Button>
+			<Button href="/projects/project-1/edit-project">Editar</Button>
 			<Button on:click={() => (popupModal = true)}>Eliminar</Button>
 			<Modal bind:open={popupModal} size="xs" autoclose>
 				<div class="text-center">
