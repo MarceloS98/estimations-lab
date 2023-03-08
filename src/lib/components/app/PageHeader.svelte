@@ -8,7 +8,7 @@
 {#if !isEditable}
 	<div class="flex items-center mb-4">
 		<h1 class="container mx-auto text-4xl font-bold">{title}</h1>
-		<Button href="/projects/create-project">Nuevo</Button>
+		<Button href={route}>Nuevo</Button>
 	</div>
 {:else}
 	<div class="flex items-center">
